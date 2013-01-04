@@ -83,31 +83,7 @@
     [self.textField resignFirstResponder];
 }
 
-- (void)textFieldDidBeginEditing
-{
-    [self performSelector:@selector(resign) withObject:nil afterDelay:0.01];
-}
 
--(void)resign {
-    [self.textField resignFirstResponder];
-    textField.touchedPickerCell = FALSE;
-}
-
-//-(void)textFieldwasTouched {
-//    
-//    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] init];
-//    [textField addGestureRecognizer:tap];
-//    
-//    if ([tap.view isKindOfClass:[TTPickerViewCell class]]) {
-//        NSLog(@"tapped cell");
-//    }
-//    else if (tap.view == textField.rightView) {
-//        NSLog(@"tapped rightview");
-//    }
-//    else {
-//        [self resign];
-//    }
-//}
 
 
 
