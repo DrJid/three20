@@ -57,7 +57,7 @@
 @synthesize requireNonEmptyMessageBody  = _requireNonEmptyMessageBody;
 @synthesize dataSource                  = _dataSource;
 @synthesize delegate                    = _delegate;
-
+@synthesize scrollView = _scrollView;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -137,7 +137,7 @@
     TTPickerTextField* textField = [field createViewForController:self];
     if (textField) {
       textField.delegate = self;
-      textField.backgroundColor = TTSTYLEVAR(backgroundColor);
+        textField.backgroundColor = TTSTYLEVAR(backgroundColor);
       textField.font = TTSTYLEVAR(messageFont);
       textField.returnKeyType = UIReturnKeyNext;
       textField.autoresizingMask = UIViewAutoresizingFlexibleWidth;
@@ -177,6 +177,10 @@
   }
 
   _scrollView.contentSize = CGSizeMake(_scrollView.width, y);
+    
+    
+
+
 }
 
 
@@ -328,7 +332,7 @@
   _textEditor.showsExtraLine = YES;
   _textEditor.minNumberOfLines = 6;
   [_textEditor sizeToFit];
-
+    
   [self createFieldViews];
   [self layoutViews];
 }
@@ -565,6 +569,11 @@
   }
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (TTTextEditor *)bodyField {
+    return _textEditor;
+}
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSString*)body {
@@ -634,10 +643,11 @@
     if ([textField isKindOfClass:[TTPickerTextField class]]) {
       text = textField.text;
     }
+
   }
 
   NSCharacterSet* whitespace = [NSCharacterSet whitespaceCharacterSet];
-  return [text stringByTrimmingCharactersInSet:whitespace];
+    return [text stringByTrimmingCharactersInSet:whitespace];
 }
 
 
@@ -797,6 +807,16 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)messageDidSend {
 }
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)removeActivityView {
+    self.navigationItem.rightBarButtonItem.enabled = YES;
+    
+    [_activityView removeFromSuperview];
+    TT_RELEASE_SAFELY(_activityView);
+    
+}
+
 
 
 @end

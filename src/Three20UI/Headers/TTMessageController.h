@@ -42,7 +42,7 @@
 @protected
   NSArray*          _fields;
   NSMutableArray*   _fieldViews;
-  UIScrollView*     _scrollView;
+//  UIScrollView*     _scrollView;
   TTTextEditor*     _textEditor;
   TTActivityLabel*  _activityView;
   NSArray*          _initialRecipients;
@@ -54,6 +54,8 @@
   id<TTTableViewDataSource>       _dataSource;
   id<TTMessageControllerDelegate> _delegate;
 }
+
+@property(nonatomic, strong) UIScrollView * scrollView;
 
 /**
  * The delegate that will receive messages from the TTMessageControllerDelegate
@@ -86,6 +88,13 @@
  * message.
  */
 @property (nonatomic, copy) NSString* body;
+
+
+@property (nonatomic, copy)TTTextEditor *bodyField;
+/**
+ * Sends you the body field
+ *
+ */
 
 /**
  * Controls whether a contact add button is shown in the views for
@@ -211,5 +220,11 @@
  * entered any subject or body text.
  */
 - (BOOL)messageShouldCancel;
+
+
+/**
+ * DrJid I added this in an attempt to better support error handling
+ */
+- (void)removeActivityView;
 
 @end

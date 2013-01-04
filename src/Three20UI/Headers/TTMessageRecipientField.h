@@ -27,5 +27,6 @@
 }
 
 @property (nonatomic, copy) NSArray* recipients;
+@property(nonatomic, copy) TTPickerTextField *textField;
 
 @end

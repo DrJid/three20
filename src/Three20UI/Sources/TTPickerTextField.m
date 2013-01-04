@@ -48,6 +48,7 @@ static const CGFloat kMinCursorWidth  = 50.0f;
 @synthesize cellViews     = _cellViews;
 @synthesize selectedCell  = _selectedCell;
 @synthesize lineCount     = _lineCount;
+@synthesize touchedPickerCell = _touchedPickerCell;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -66,7 +67,10 @@ static const CGFloat kMinCursorWidth  = 50.0f;
 
     [self addTarget:self action:@selector(textFieldDidEndEditing)
       forControlEvents:UIControlEventEditingDidEnd];
-  }
+      
+      [self addTarget:self action:@selector(textFieldShouldBeginEditing) forControlEvents:UIControlEventEditingDidBegin];
+
+    }
 
   return self;
 }
@@ -228,17 +232,23 @@ static const CGFloat kMinCursorWidth  = 50.0f;
 - (void)touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event {
   [super touchesBegan:touches withEvent:event];
 
+    
   if (_dataSource) {
     UITouch* touch = [touches anyObject];
     if (touch.view == self) {
       self.selectedCell = nil;
+//        NSLog(@"Touch in the self.(TTPickerTextField) - resigned FR");
+        [self resignFirstResponder];
+
 
     } else {
       if ([touch.view isKindOfClass:[TTPickerViewCell class]]) {
         self.selectedCell = (TTPickerViewCell*)touch.view;
-        [self becomeFirstResponder];
+          [self becomeFirstResponder];
+          self.touchedPickerCell = TRUE;
+//          NSLog(@"Touched TTPickerViewCell it did become first responder.");
       }
-    }
+    } 
   }
 }
 
@@ -396,6 +406,9 @@ static const CGFloat kMinCursorWidth  = 50.0f;
   }
 }
 
+- (void)textFieldShouldBeginEditing {
+}
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -477,6 +490,8 @@ static const CGFloat kMinCursorWidth  = 50.0f;
     self.text = kEmpty;
   }
 }
+
+
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

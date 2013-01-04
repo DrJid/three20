@@ -482,5 +482,26 @@ static const CGFloat kUITextViewVerticalPadding = 6.0f;
   }
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+-(NSRange)selectedRange {
+    return _textView.selectedRange;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+-(void)setSelectedRange:(NSRange)selectedRange {
+    _textView.selectedRange = selectedRange;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+-(void)setTextSpeciale:(NSString*)text {
+    [self didChangeText:true];
+    
+    _textField.text = _textView.text = text;
+    if (_autoresizesToText) {
+        [self constrainToText];
+    }
+    
+}
+
 
 @end

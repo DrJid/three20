@@ -54,6 +54,14 @@ static const CGFloat kMaxWidth = 250.0f;
   return self;
 }
 
+//-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+//    for (UITouch *t in touches) {
+//        CGPoint touchLocation = [t locationInView:self];
+//        [self.superview becomeFirstResponder];
+//        NSLog(@"what..?");
+//    }
+//}
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {

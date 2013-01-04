@@ -30,6 +30,7 @@
 @property (nonatomic, readonly) NSArray*          cells;
 @property (nonatomic, assign)   TTPickerViewCell* selectedCell;
 @property (nonatomic, readonly) int               lineCount;
+@property BOOL touchedPickerCell;
 
 - (void)addCellWithObject:(id)object;
 

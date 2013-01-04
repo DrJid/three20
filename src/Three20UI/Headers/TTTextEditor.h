@@ -51,6 +51,12 @@
 
 @property (nonatomic, assign) id<TTTextEditorDelegate> delegate;
 
+@property (nonatomic) NSRange selectedRange;
+
+- (void)setTextSpeciale:(NSString*)text;
+
+- (void)setSelectedRange:(NSRange)selectedRange; 
+
 - (void)scrollContainerToCursor:(UIScrollView*)scrollView;
 
 @end
